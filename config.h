@@ -221,6 +221,8 @@ static char *copyurlcmd[] = { "/bin/sh", "-c",
 
 static char *copyoutput[] = { "/bin/sh", "-c", "st-copyout", "externalpipe", NULL };
 
+static char *cmdhistory[] = { "/bin/sh", "-e" "$(history | tac | cut -c 8- | dmenu)", "externalpipe", NULL};
+
 static Shortcut shortcuts[] = {
 	/* mask                 keysym          function        argument */
 	{ XK_ANY_MOD,           XK_Break,       sendbreak,      {.i =  0} },
@@ -250,7 +252,8 @@ static Shortcut shortcuts[] = {
 	{ TERMMOD,              XK_D,           zoom,           {.f = -2} },
 	{ MODKEY,               XK_l,           externalpipe,   {.v = openurlcmd } },
 	{ MODKEY,               XK_y,           externalpipe,   {.v = copyurlcmd } },
-	{ MODKEY,               XK_o,           externalpipe,   {.v = copyoutput } },
+  /* { MODKEY,               XK_o,           externalpipe,   {.v = copyoutput } }, */
+	{ MODKEY,               XK_o,           externalpipe,   {.v = cmdhistory } },
 	{ MODKEY,		XK_v,		clippaste,	{.v = clippaste  } },
 	{ MODKEY,		XK_c,		clipcopy,	{.v = clipcopy   } },
 };
